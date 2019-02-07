@@ -10,6 +10,6 @@ https://www.eclipse.org/downloads/
   Make sure you have checked whatever you have selected before you save
 
 # Import project into Eclipse 
-
+Go to File > Import > Type "Existing Maven Projects" > Next > and select the Automation folder and Finish
 # Run the Feature files
 Right click the project and > Run As > Maven Test will run all the feature files
