@@ -83,5 +83,21 @@ public class UserStepDefinitions implements BaseTest {
 		Thread.sleep(3000);
 	}
 
+	@When("^I try to click on \"([^\"]*)\"$")
+	public void iTryToClickOn(String arg1) throws Throwable {
+		
+	}
+
+	@When("^I try to login with google username \"([^\"]*)\" and password \"([^\"]*)\"$")
+	public void iTryToLoginWithGoogleUsernameAndPassword(String email, String pass) throws Throwable {
+		browser.findElement(By.xpath("(//div[@class='auth0-lock-social-button-text'])[2]")).click();
+		Thread.sleep(3000);
+		browser.findElement(By.name("identifier")).sendKeys(email);
+		browser.findElement(By.className("RveJvd")).click();
+		Thread.sleep(3000);
+		browser.findElement(By.name("password")).sendKeys(pass);
+		browser.findElement(By.className("RveJvd")).click();
+	}
+
 }
 
