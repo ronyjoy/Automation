@@ -24,7 +24,7 @@ Feature: Login Feature
     When I try to enter username "joyrony@gmail.com" and password ""
     Then I should see a validation failure message "Can't be blank"
     @wip
-   Scenario: Login with Google
+   Scenario: Login with Google test
     Given that user go to the login page "https://evening-hamlet-13500.herokuapp.com/login/"
     when  I try to click on " log in with google" 
     And I enter my Email ID and enter password
