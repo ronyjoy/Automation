@@ -1,8 +1,11 @@
 package info.seleniumcucumber.userStepDefintions;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -18,12 +21,13 @@ public class UserStepDefinitions implements BaseTest {
 	@Given("^that user goto the login page \"([^\"]*)\"$")
 	public void thatUserGotoTheLoginPage(String loginPage) throws Throwable {
 		browser.get(loginPage);
+		browser.findElement(By.className("btn-primary")).click();
+		Thread.sleep(2000);
+		
 	}
 
 	@When("^I try to enter username \"([^\"]*)\" and password \"([^\"]*)\"$")
 	public void iTryToEnterUsernameAndPassword(String email, String password) throws Throwable {
-		browser.findElement(By.className("btn-primary")).click();
-		Thread.sleep(2000);
 		browser.findElement(By.name("email")).sendKeys(email);
 		browser.findElement(By.name("password")).sendKeys(password);
 		browser.findElement(By.className("auth0-label-submit")).click();
@@ -68,4 +72,16 @@ public class UserStepDefinitions implements BaseTest {
 	public void iShouldSeeCustomerListWithPagination() throws Throwable {
 	}
 
+
+	@When("^I try to login with facebook username \"([^\"]*)\" and password \"([^\"]*)\"$")
+	public void iTryToLoginWithFacebookUsernameAndPassword(String email, String pass) throws Throwable {
+		browser.findElement(By.className("auth0-lock-social-button-text")).click();
+		Thread.sleep(3000);
+		browser.findElement(By.id("email")).sendKeys(email);
+		browser.findElement(By.id("pass")).sendKeys(pass);
+		browser.findElement(By.name("login")).click();
+		Thread.sleep(3000);
+	}
+
 }
+
