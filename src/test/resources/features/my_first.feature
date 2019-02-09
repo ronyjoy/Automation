@@ -31,7 +31,7 @@ Feature: Login Feature
    	Then I should be able to login to the system
      
     @wip
-   Scenario: Login with Google
+   Scenario: Login with Gogle
     Given that user go to the login page "https://evening-hamlet-13500.herokuapp.com/login/"
     when  I try to click on " log in with google" 
     And I enter my Email ID and enter password
