@@ -21,6 +21,7 @@ public class DriverUtil {
     static String currentPath = System.getProperty("user.dir");
     static Properties prop = new Properties();
     static DesiredCapabilities capability=null;
+    private static String os = System.getProperty("os.name").toLowerCase();
     
     public static DesiredCapabilities getCapability(InputStream input) {
     	DesiredCapabilities capability = new DesiredCapabilities();
@@ -52,13 +53,27 @@ public class DriverUtil {
    
 
 	public static WebDriver getDefaultDriver() {
-		
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+		if(isWindows()) {
+			System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
+		} else {
+			System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");	
+		}
+		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
 		driver = new ChromeDriver();
 	    return driver;
     }
 
- 
+	public static boolean isWindows() {
+
+		return (os.indexOf("win") >= 0);
+
+	}
+
+	public static boolean isMac() {
+
+		return (os.indexOf("mac") >= 0);
+
+	}
 
     public static WebElement waitAndGetElementByCssSelector(WebDriver driver, String selector,
                                                             int seconds) {
