@@ -58,7 +58,7 @@ public class DriverUtil {
 		} else {
 			System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");	
 		}
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
+		
 		driver = new ChromeDriver();
 	    return driver;
     }
