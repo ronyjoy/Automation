@@ -17,6 +17,8 @@ import info.seleniumcucumber.methods.BaseTest;
 public class UserStepDefinitions implements BaseTest {
 
 	protected WebDriver browser = DriverUtil.getDefaultDriver();
+	
+	private String name ="";
 
 	@Given("^that user goto the login page \"([^\"]*)\"$")
 	public void thatUserGotoTheLoginPage(String loginPage) throws Throwable {
@@ -97,7 +99,70 @@ public class UserStepDefinitions implements BaseTest {
 		Thread.sleep(3000);
 		browser.findElement(By.name("password")).sendKeys(pass);
 		browser.findElement(By.className("RveJvd")).click();
+	
 	}
+
+	@Given("^that when I goto add customer page$")
+	public void thatWhenIGotoAddCustomerPage() throws Throwable {
+		browser.get("http://bpmsportal.com/dashboard/addcustomer");
+		Thread.sleep(2000);
+	}
+
+	@When("^I entered all the required information and submit$")
+	public void iEnteredAllTheRequiredInformationAndSubmit() throws Throwable {
+		name = "Sonu Rony"+System.currentTimeMillis();
+		browser.findElement(By.id("add-customer_name")).sendKeys(name);
+		browser.findElement(By.id("add-customer_address")).sendKeys("3748 Turetella Dr");
+		browser.findElement(By.id("add-customer_phone")).sendKeys("5129037017");
+		browser.findElement(By.id("add-customer_fax")).sendKeys("5129037017");
+		browser.findElement(By.id("add-customer_contactPerson")).sendKeys("Neave");
+		browser.findElement(By.id("add-customer_email")).sendKeys("sonurony@gmail.com");
+		browser.findElement(By.className("ant-btn-primary")).click();
+		Thread.sleep(3000);
+		
+	}
+
+
+	@Then("^Customer is saved$")
+	public void customerIsSaved() throws Throwable {
+
+		browser.get("http://bpmsportal.com/dashboard/customers");
+		browser.findElement(By.className("container-fluid")).getText().contains(name);
+		browser.close();
+		
+		
+	}
+
+
+	@When("^I skipped contact person mandatory fields to enter$")
+	public void iSkippedContactPersonMandatoryFieldsToEnter() throws Throwable {
+		browser.findElement(By.id("add-customer_name")).sendKeys("Sonu Rony");
+		browser.findElement(By.id("add-customer_address")).sendKeys("3748 Turetella Dr");
+		browser.findElement(By.id("add-customer_phone")).sendKeys("5129037017");
+		browser.findElement(By.id("add-customer_fax")).sendKeys("5129037017");
+		browser.findElement(By.id("add-customer_email")).sendKeys("sonurony@gmail.com");
+		browser.findElement(By.className("ant-btn-primary")).click();
+		Thread.sleep(3000);
+	}
+
+	@Then("^I should get \"([^\"]*)\" required error when I submit the details$")
+	public void iShouldGetRequiredErrorWhenISubmitTheDetails(String arg1) throws Throwable {
+		Assert.assertEquals(arg1, browser.findElement(By.className("ant-form-explain")).getText());
+		browser.close();
+		
+	}
+
+
+
+
+	
+
+
+
+
+	
+
+	
 
 }
 
