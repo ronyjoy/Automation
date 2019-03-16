@@ -30,7 +30,7 @@ Feature: Login Feature
    	When I try to login with facebook username "dhanya.dijoy@gmail.com" and password "aaryan" 
    	Then I should be able to login
      
-    @wip
+    
     Scenario: Login with Google test
     Given that user goto the login page "https://evening-hamlet-13500.herokuapp.com/login/" 
     When I try to login with google username "joyrony@gmail.com" and password "Ammuss02"
